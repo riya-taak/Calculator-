@@ -13,3 +13,8 @@
          let y = eval(x);
         document.getElementById("a").value = y
     }
+
+    function clr()
+    {
+         document.getElementById("a").value= " ";
+    }
