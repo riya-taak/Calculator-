@@ -1,25 +1,47 @@
 
+    var display= document.getElementById("a")
+
     function pick(val)
     {
-         let num = document.getElementById("a").value;
+         let num = display.value;
          num = num + val;
-         document.getElementById("a").value = num;
+         display.value = num;
     }
 
 
      function solve()
     {
-         let x = document.getElementById("a").value;
+         let x = display.value;
          let y = eval(x);
-        document.getElementById("a").value = y
+        display.value = y
     }
 
     function clr()
     {
-         document.getElementById("a").value= " ";
+       display.value= " ";
     }
-    
+
 function dlt() {
-    let display = document.getElementById("display");
-    display.value = display.value.slice(0, -1);
+  
+  display.value = display.value.slice(0, -1);
 }
+
+let value = "";
+  
+function pick(input) {
+  if (input === "." && value.includes(".")) return;
+
+  value += input;
+ display.value = value;
+}
+
+// function pick()
+// {
+//   if(input === "."){
+//     if(value.include("."))
+//     {
+//       return;
+//     }
+//   }
+//   value += input;
+// }
