@@ -1,67 +1,16 @@
-
-    var display= document.getElementById("a")
-
-    function pick(val)
-    {
-         let num = display.value;
-         num = num + val;
-         display.value = num;
-    }
-
-
-     function solve()
-    {
-         let x = display.value;
-         let y = eval(x);
-        display.value = y
-    }
-
-    function clr()
-    {
-       display.value= " ";
-    }
-
-function dlt() {
-  
-  display.value = display.value.slice(0, -1);
-}
-
-// let value = "";
-  
-// function pick(input) {
-//   if (input === "." && value.includes(".")) return;
-
-//   value += input;
-//  display.value = value;
-// }
-
-// // function pick()
-// // {
-// //   if(input === "."){
-// //     if(value.include("."))
-// //     {
-// //       return;
-// //     }
-// //   }
-// //   value += input;
-// // }
-
+var display = document.getElementById("a");
 
 function pick(value) {
-    // let display = document.getElementById("a");
-    let current = display.value;
-
+    let current = display.value.trim();
     let operators = ['+', '-', '*', '/'];
-
-    // last character nikaalo
     let lastChar = current[current.length - 1];
 
-    // agar starting me operator dabaya
+    // agar start mein operator dabaya
     if (current === "" && operators.includes(value)) {
         return;
     }
 
-    // agar last char bhi operator hai aur naya value bhi operator hai
+    // agar last char bhi operator hai aur naya bhi operator hai
     if (operators.includes(lastChar) && operators.includes(value)) {
         return;
     }
@@ -71,12 +20,10 @@ function pick(value) {
         let parts = current.split(/[\+\-\*\/]/);
         let lastPart = parts[parts.length - 1];
 
-        // ek number me sirf ek hi dot
         if (lastPart.includes(".")) {
             return;
         }
 
-        // agar start me ya operator ke baad dot dabaya
         if (lastPart === "") {
             display.value += "0.";
             return;
@@ -84,4 +31,26 @@ function pick(value) {
     }
 
     display.value += value;
+}
+
+function solve() {
+    try {
+        let x = display.value.trim();
+        if (x === "") return;
+        let y = eval(x);
+        display.value = y;
+    } catch (e) {
+        // ✅ Invalid expression handle
+        display.value = "Error";
+        setTimeout(() => display.value = "", 1000);
+    }
+}
+
+function clr() {
+    // ✅ Space bug fix — pehle " " tha, ab "" hai
+    display.value = "";
+}
+
+function dlt() {
+    display.value = display.value.slice(0, -1);
 }
